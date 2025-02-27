@@ -1,0 +1,36 @@
+[ {
+  "title" : "Mistborn: The Final Empire",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-1250868282",
+  "available" : true
+}, {
+  "title" : "The Well of Ascension",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-1250868299",
+  "available" : true
+}, {
+  "title" : "The Hero of Ages",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-1250868312",
+  "available" : true
+}, {
+  "title" : "The Alloy of Law",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765330420",
+  "available" : true
+}, {
+  "title" : "Shadows of Self",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765378552",
+  "available" : true
+}, {
+  "title" : "The Bands of Mourning",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765378576",
+  "available" : true
+}, {
+  "title" : "The Lost Metal",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765391193",
+  "available" : true
+} ]
