@@ -1,0 +1,9 @@
+[ {
+  "userId" : "U7544",
+  "name" : "Mr. Man",
+  "checkedOutBooks" : [ "978-1524631654" ]
+}, {
+  "userId" : "U435",
+  "name" : "Mr. Bill",
+  "checkedOutBooks" : [ ]
+} ]

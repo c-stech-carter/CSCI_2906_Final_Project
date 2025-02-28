@@ -1,0 +1,64 @@
+[ {
+  "title" : "The Cheese Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "978-1524631654",
+  "available" : false,
+  "borrowedBy" : "U7544",
+  "dueDate" : [ 2025, 3, 13 ]
+}, {
+  "title" : "The Corn Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "978-456132412",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "Mistborn: The Final Empire",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-1250868282",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Well of Ascension",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-1250868299",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Hero of Ages",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-1250868312",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Alloy of Law",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765330420",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "Shadows of Self",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765378552",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Bands of Mourning",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765378576",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Lost Metal",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765391193",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+} ]
