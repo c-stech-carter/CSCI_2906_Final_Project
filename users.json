@@ -6,4 +6,8 @@
   "userId" : "U435",
   "name" : "Mr. Bill",
   "checkedOutBooks" : [ ]
+}, {
+  "userId" : "U76554",
+  "name" : "Joan Collins",
+  "checkedOutBooks" : [ ]
 } ]

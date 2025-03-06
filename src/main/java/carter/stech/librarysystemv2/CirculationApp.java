@@ -34,7 +34,7 @@ public class CirculationApp extends Application {
         bookList = FXCollections.observableArrayList(loadBooks());
         userList = FXCollections.observableArrayList(loadUsers());
 
-        //User UI for Check-Outs
+        //--User UI for Check-Outs
         userIdField = new TextField();
         userIdField.setPromptText("Enter User ID or Name");
         Button findUserButton = new Button("Find User");
@@ -48,9 +48,11 @@ public class CirculationApp extends Application {
         userBooksTable = new TableView<>();
         TableColumn<Book, String> titleCol = new TableColumn<>("Title");
         titleCol.setCellValueFactory(data -> data.getValue().titleProperty());
+        titleCol.setPrefWidth(150);
 
         TableColumn<Book, String> authorCol = new TableColumn<>("Author");
         authorCol.setCellValueFactory(data -> data.getValue().authorProperty());
+        authorCol.setPrefWidth(150);
 
         TableColumn<Book, String> dueDateCol = new TableColumn<>("Due Date");
         dueDateCol.setCellValueFactory(data -> new SimpleStringProperty(
@@ -66,7 +68,7 @@ public class CirculationApp extends Application {
         HBox checkoutBox = new HBox(10, isbnField, checkoutButton);
         checkoutBox.setPadding(new Insets(10));
 
-        //Check in UI
+        //--Check in books UI
         checkInField = new TextField();
         checkInField.setPromptText("Enter ISBN or Title to Check In");
         Button checkInButton = new Button("Check In Book");
@@ -78,10 +80,12 @@ public class CirculationApp extends Application {
         recentCheckInsTable = new TableView<>();
         TableColumn<Book, String> checkInTitleCol = new TableColumn<>("Title");
         checkInTitleCol.setCellValueFactory(data -> data.getValue().titleProperty());
+        checkInTitleCol.setPrefWidth(150);
 
         TableColumn<Book, String> checkInUserCol = new TableColumn<>("Last Borrowed By");
         checkInUserCol.setCellValueFactory(data ->
                 new SimpleStringProperty(getUserNameById(data.getValue().getBorrowedBy())));
+        checkInUserCol.setPrefWidth(150);
 
         TableColumn<Book, String> checkInDueDateCol = new TableColumn<>("Due Date");
         checkInDueDateCol.setCellValueFactory(data -> new SimpleStringProperty(
@@ -92,7 +96,7 @@ public class CirculationApp extends Application {
         VBox checkInLayout = new VBox(10, checkInBox, new Label("Recently Checked In Books"), recentCheckInsTable);
         checkInLayout.setPadding(new Insets(10));
 
-        //Tabs
+        //Tabs setup
         TabPane tabPane = new TabPane();
         Tab checkoutTab = new Tab("Check Out", new VBox(10, userInputBox, userNameLabel, userBooksTable, checkoutBox));
         Tab checkInTab = new Tab("Check In", checkInLayout);
@@ -103,7 +107,7 @@ public class CirculationApp extends Application {
 
 
 
-        Scene scene = new Scene(tabPane, 600, 400);
+        Scene scene = new Scene(tabPane, 800, 600);
         primaryStage.setTitle("Library Circulation System");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -114,7 +118,6 @@ public class CirculationApp extends Application {
         //Try searching by ID first
         Optional<User> userOptional = userList.stream().filter(user -> user.getUserId()
                 .equals(input)).findFirst();
-
 
         //Alternatively, search by Name
         if(userOptional.isEmpty()) {
@@ -154,6 +157,7 @@ public class CirculationApp extends Application {
             Book selectedBook = bookOptional.get();
             selectedBook.setAvailable(false);
             selectedBook.setBorrowedBy(currentUser.getUserId());
+            //Default Checkout period can be changed here:
             selectedBook.setDueDate(LocalDate.now().plusWeeks(2));
 
             //Store only ISBN in user's record

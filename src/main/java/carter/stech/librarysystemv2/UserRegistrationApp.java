@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class UserRegistrationApp extends Application {
     private static final String USERS_FILE = "users.json";
@@ -32,9 +33,11 @@ public class UserRegistrationApp extends Application {
         // Table Columns
         TableColumn<User, String> idCol = new TableColumn<>("User ID");
         idCol.setCellValueFactory(data -> data.getValue().userIdProperty());
+        idCol.setPrefWidth(100);
 
         TableColumn<User, String> nameCol = new TableColumn<>("Name");
         nameCol.setCellValueFactory(data -> data.getValue().nameProperty());
+        nameCol.setPrefWidth(150);
 
         tableView.getColumns().addAll(idCol, nameCol);
         tableView.setItems(userList);
@@ -49,7 +52,10 @@ public class UserRegistrationApp extends Application {
         Button addButton = new Button("Register User");
         addButton.setOnAction(e -> addUser(idField, nameField));
 
-        HBox inputBox = new HBox(10, idField, nameField, addButton);
+        Button deleteButton = new Button("Delete User");
+        deleteButton.setOnAction(e -> deleteUser());
+
+        HBox inputBox = new HBox(10, idField, nameField, addButton, deleteButton);
         inputBox.setPadding(new Insets(10));
 
         BorderPane root = new BorderPane();
@@ -84,6 +90,21 @@ public class UserRegistrationApp extends Application {
 
         idField.clear();
         nameField.clear();
+    }
+
+    private void deleteUser() {
+        Optional<User> selectedUser = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
+
+        selectedUser.ifPresentOrElse(user -> {
+            if (!user.getCheckedOutBooks().isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Cannot Delete",
+                        "User has active checkouts and cannot be deleted.");
+                return;
+            }
+
+            userList.remove(user);
+            saveUsers(userList);
+        }, () -> showAlert(Alert.AlertType.ERROR, "No Selection", "Please select a user to delete."));
     }
 
     private List<User> loadUsers() {
