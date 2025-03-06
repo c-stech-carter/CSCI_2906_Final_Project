@@ -77,12 +77,24 @@ public class UserRegistrationApp extends Application {
             return;
         }
 
+        Optional<User> existingUser = userList.stream()
+                .filter(user -> user.getUserId().equals(userId))
+                .findFirst();
+
+        if (existingUser.isPresent()) {
+            showAlert(Alert.AlertType.ERROR, "Duplicate User ID", "User ID already exists!  Please enter an unused ID.");
+            return;
+        }
+
+        /*
         for (User user : userList) {
             if (user.getUserId().equals(userId)) {
                 showAlert(Alert.AlertType.ERROR, "Duplicate User", "User ID already exists!");
                 return;
             }
         }
+        */
+
 
         User newUser = new User(userId, name, new ArrayList<>());
         userList.add(newUser);
