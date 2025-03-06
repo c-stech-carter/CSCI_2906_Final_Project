@@ -155,7 +155,9 @@ public class CirculationApp extends Application {
             selectedBook.setAvailable(false);
             selectedBook.setBorrowedBy(currentUser.getUserId());
             selectedBook.setDueDate(LocalDate.now().plusWeeks(2));
-            currentUser.addCheckedOutBook(input);
+
+            //Store only ISBN in user's record
+            currentUser.addCheckedOutBook(selectedBook.getIsbn());
 
             saveBooks(bookList);
             saveUsers(userList);
@@ -178,7 +180,18 @@ public class CirculationApp extends Application {
             String lastBorrowedBy = selectedBook.getBorrowedBy();
             LocalDate lastDueDate = selectedBook.getDueDate();
 
+            //Find the user who checked out this book
+            Optional<User> userOptional = userList.stream()
+                    .filter(user -> user.getUserId().equals(lastBorrowedBy))
+                    .findFirst();
 
+            if (userOptional.isPresent()) {
+                User borrower = userOptional.get();
+                borrower.returnBook(selectedBook.getIsbn()); // Remove the book from the user's list
+                saveUsers(userList); // Save updated user data
+            }
+
+            //Update book status
             selectedBook.setAvailable(true);
             selectedBook.setBorrowedBy(null);
             selectedBook.setDueDate(null);
@@ -187,6 +200,8 @@ public class CirculationApp extends Application {
             recentCheckInsQueue.add(new Book(selectedBook.getTitle(), selectedBook.getAuthor(),
                     selectedBook.getIsbn(), false, lastBorrowedBy, lastDueDate)); //Displays original borrower/due date values in a temporary new Book
             recentCheckInsTable.setItems(FXCollections.observableArrayList(recentCheckInsQueue));
+
+
 
             saveBooks(bookList);
             updateUserBooksTable();  //Makes sure the checkout tab displays proper information

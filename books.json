@@ -4,14 +4,14 @@
   "isbn" : "978-1524631654",
   "available" : false,
   "borrowedBy" : "U7544",
-  "dueDate" : [ 2025, 3, 13 ]
+  "dueDate" : [ 2025, 3, 19 ]
 }, {
   "title" : "The Corn Book",
   "author" : "Jorn Shorn",
   "isbn" : "978-456132412",
-  "available" : false,
-  "borrowedBy" : "U7544",
-  "dueDate" : [ 2025, 3, 18 ]
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
 }, {
   "title" : "Mistborn: The Final Empire",
   "author" : "Brandon Sanderson",

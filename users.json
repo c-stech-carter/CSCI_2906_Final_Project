@@ -1,7 +1,7 @@
 [ {
   "userId" : "U7544",
   "name" : "Mr. Man",
-  "checkedOutBooks" : [ "978-1524631654", "The Well of Ascension", "The Corn Book", "The Well of Ascension", "The Well of Ascension", "The Well of Ascension", "The Well of Ascension", "The Well of Ascension", "The Well of Ascension" ]
+  "checkedOutBooks" : [ "978-1524631654" ]
 }, {
   "userId" : "U435",
   "name" : "Mr. Bill",

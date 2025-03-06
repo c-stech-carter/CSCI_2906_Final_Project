@@ -78,8 +78,16 @@ public class CatalogingApp extends Application {
     private void removeBook() {
         Book selectedBook = tableView.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
-            booksList.remove(selectedBook);
-            saveBooks(booksList);
+            if (selectedBook.isAvailable()) {  // Prevent removal if book is checked out
+                booksList.remove(selectedBook);
+                saveBooks(booksList);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Cannot Remove Book");
+                alert.setHeaderText("Book is currently checked out");
+                alert.setContentText("Please check the book back in before removing.");
+                alert.showAndWait();
+            }
         }
     }
 
