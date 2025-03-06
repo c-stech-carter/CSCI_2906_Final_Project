@@ -85,17 +85,7 @@ public class UserRegistrationApp extends Application {
             showAlert(Alert.AlertType.ERROR, "Duplicate User ID", "User ID already exists!  Please enter an unused ID.");
             return;
         }
-
-        /*
-        for (User user : userList) {
-            if (user.getUserId().equals(userId)) {
-                showAlert(Alert.AlertType.ERROR, "Duplicate User", "User ID already exists!");
-                return;
-            }
-        }
-        */
-
-
+        
         User newUser = new User(userId, name, new ArrayList<>());
         userList.add(newUser);
         saveUsers(userList);
