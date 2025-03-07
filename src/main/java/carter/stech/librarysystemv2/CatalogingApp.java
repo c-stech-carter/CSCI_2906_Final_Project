@@ -1,6 +1,7 @@
 package carter.stech.librarysystemv2;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -30,7 +31,7 @@ public class CatalogingApp extends Application {
         TableColumn<Book, String> authorCol = new TableColumn<>("Author");
         authorCol.setCellValueFactory(data -> data.getValue().authorProperty());
 
-        TableColumn<Book, String> isbnCol = new TableColumn<>("ISBN");
+        TableColumn<Book, String> isbnCol = new TableColumn<>("ISBN or BookID");
         isbnCol.setCellValueFactory(data -> data.getValue().isbnProperty());
 
         tableView.getColumns().addAll(titleCol, authorCol, isbnCol);
@@ -62,6 +63,9 @@ public class CatalogingApp extends Application {
         primaryStage.setTitle("Library Cataloging System");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        //Remove focus from titleField so that the text prompt is visible on startup
+        Platform.runLater(() -> titleField.getParent().requestFocus());
     }
 
     private void addBook(TextField title, TextField author, TextField isbn) {

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Book implements Serializable {
     private StringProperty title;
     private StringProperty author;
-    private StringProperty isbn;
+    private StringProperty isbn; //This field can double as a custom book ID
     private BooleanProperty isAvailable;
     private StringProperty borrowedBy;
     private ObjectProperty<LocalDate> dueDate;
@@ -39,7 +39,7 @@ public class Book implements Serializable {
     public void setAuthor(String author) { this.author.set(author); }
     public StringProperty authorProperty() { return author; }
 
-    // ISBN methods
+    // ISBN methods (also for Book ID)
     public String getIsbn() { return isbn.get(); }
     public void setIsbn(String isbn) { this.isbn.set(isbn); }
     public StringProperty isbnProperty() { return isbn; }

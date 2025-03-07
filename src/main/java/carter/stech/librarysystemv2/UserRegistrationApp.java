@@ -77,15 +77,15 @@ public class UserRegistrationApp extends Application {
             return;
         }
 
+        //Preventing users with duplicate IDs
         Optional<User> existingUser = userList.stream()
                 .filter(user -> user.getUserId().equals(userId))
                 .findFirst();
-
         if (existingUser.isPresent()) {
             showAlert(Alert.AlertType.ERROR, "Duplicate User ID", "User ID already exists!  Please enter an unused ID.");
             return;
         }
-        
+
         User newUser = new User(userId, name, new ArrayList<>());
         userList.add(newUser);
         saveUsers(userList);
@@ -97,6 +97,7 @@ public class UserRegistrationApp extends Application {
     private void deleteUser() {
         Optional<User> selectedUser = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
 
+        //Will not allow user removal if they have active checkouts
         selectedUser.ifPresentOrElse(user -> {
             if (!user.getCheckedOutBooks().isEmpty()) {
                 showAlert(Alert.AlertType.ERROR, "Cannot Delete",

@@ -3,10 +3,12 @@ package carter.stech.librarysystemv2;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -42,6 +44,11 @@ public class CirculationApp extends Application {
 
         HBox userInputBox = new HBox(10, userIdField, findUserButton);
         userInputBox.setPadding(new Insets(10));
+        // Ensure spacing for user input
+        userInputBox.setPadding(new Insets(10, 10, 10, 10));
+        userInputBox.setAlignment(Pos.CENTER_LEFT);
+
+
 
         userNameLabel = new Label("User: Not Selected");
 
@@ -57,25 +64,33 @@ public class CirculationApp extends Application {
         TableColumn<Book, String> dueDateCol = new TableColumn<>("Due Date");
         dueDateCol.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getDueDate() != null ? data.getValue().getDueDate().toString() : "N/A"));
+        dueDateCol.setPrefWidth(150);
 
         userBooksTable.getColumns().addAll(titleCol, authorCol, dueDateCol);
+        // Fix empty column issue
+        userBooksTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        userBooksTable.setPlaceholder(new Label("No books found.")); // Message when empty
 
         isbnField = new TextField();
-        isbnField.setPromptText("Enter ISBN to Check Out");
+        isbnField.setPromptText("Enter BookID, or Title to Check Out");
         Button checkoutButton = new Button("Check Out Book");
         checkoutButton.setOnAction(e -> checkoutBook());
 
         HBox checkoutBox = new HBox(10, isbnField, checkoutButton);
         checkoutBox.setPadding(new Insets(10));
+        checkoutBox.setPadding(new Insets(10, 10, 10, 10));
+        checkoutBox.setAlignment(Pos.CENTER_LEFT);
 
         //--Check in books UI
         checkInField = new TextField();
-        checkInField.setPromptText("Enter ISBN or Title to Check In");
+        checkInField.setPromptText("Enter BookID or Title to Check In");
         Button checkInButton = new Button("Check In Book");
         checkInButton.setOnAction(e -> checkInBook());
 
         HBox checkInBox = new HBox(10, checkInField, checkInButton);
         checkInBox.setPadding(new Insets(10));
+        checkInBox.setPadding(new Insets(10, 10, 10, 10));
+        checkInBox.setAlignment(Pos.CENTER_LEFT);
 
         recentCheckInsTable = new TableView<>();
         TableColumn<Book, String> checkInTitleCol = new TableColumn<>("Title");
@@ -92,9 +107,12 @@ public class CirculationApp extends Application {
                 data.getValue().getDueDate() != null ? data.getValue().getDueDate().toString() : "N/A"));
 
         recentCheckInsTable.getColumns().addAll(checkInTitleCol, checkInUserCol, checkInDueDateCol);
+        recentCheckInsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        recentCheckInsTable.setPlaceholder(new Label("No books found.")); // Message when empty
 
         VBox checkInLayout = new VBox(10, checkInBox, new Label("Recently Checked In Books"), recentCheckInsTable);
         checkInLayout.setPadding(new Insets(10));
+
 
         //Tabs setup
         TabPane tabPane = new TabPane();
@@ -108,9 +126,15 @@ public class CirculationApp extends Application {
 
 
         Scene scene = new Scene(tabPane, 800, 600);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
+
         primaryStage.setTitle("Library Circulation System");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        //Remove focus from userIdField so that the text prompt is visible on startup
+        Platform.runLater(() -> userIdField.getParent().requestFocus());
     }
 
     private void findUser() {
@@ -138,6 +162,13 @@ public class CirculationApp extends Application {
     private void checkoutBook() {
         if (currentUser == null) {
             showAlert(Alert.AlertType.WARNING, "No User Selected", "Find a user before checking out a book.");
+            return;
+        }
+
+        int checkOutLimit = 10; //Checkout limit can be adjusted here
+        if (currentUser.getCheckedOutBooks().size() >= checkOutLimit) {
+            showAlert(Alert.AlertType.WARNING, "Checkout Limit Reached",
+                    "Users can only check out up to" + checkOutLimit + " books.");
             return;
         }
 
@@ -174,9 +205,10 @@ public class CirculationApp extends Application {
 
     private void checkInBook() {
         String input = checkInField.getText().trim();
+
+        // Find the book regardless of whether it's checked out
         Optional<Book> bookOptional = bookList.stream()
-                .filter(book -> (book.getIsbn().equalsIgnoreCase(input) || book.getTitle().equalsIgnoreCase(input))
-                        && book.getBorrowedBy() != null)
+                .filter(book -> book.getIsbn().equalsIgnoreCase(input) || book.getTitle().equalsIgnoreCase(input))
                 .findFirst();
 
         if (bookOptional.isPresent()) {
@@ -184,43 +216,54 @@ public class CirculationApp extends Application {
             String lastBorrowedBy = selectedBook.getBorrowedBy();
             LocalDate lastDueDate = selectedBook.getDueDate();
 
-            //Find the user who checked out this book
-            Optional<User> userOptional = userList.stream()
-                    .filter(user -> user.getUserId().equals(lastBorrowedBy))
-                    .findFirst();
+            // If the book was checked out, remove it from the borrower's record
+            if (lastBorrowedBy != null) {
+                Optional<User> userOptional = userList.stream()
+                        .filter(user -> user.getUserId().equals(lastBorrowedBy))
+                        .findFirst();
 
-            if (userOptional.isPresent()) {
-                User borrower = userOptional.get();
-                borrower.returnBook(selectedBook.getIsbn()); // Remove the book from the user's list
-                saveUsers(userList); // Save updated user data
+                userOptional.ifPresent(user -> {
+                    user.returnBook(selectedBook.getIsbn());
+                    saveUsers(userList);
+                });
             }
 
-            //Update book status
+            // Update book status to available
             selectedBook.setAvailable(true);
             selectedBook.setBorrowedBy(null);
             selectedBook.setDueDate(null);
 
-            if (recentCheckInsQueue.size() == 5) recentCheckInsQueue.poll();
-            recentCheckInsQueue.add(new Book(selectedBook.getTitle(), selectedBook.getAuthor(),
-                    selectedBook.getIsbn(), false, lastBorrowedBy, lastDueDate)); //Displays original borrower/due date values in a temporary new Book
+            // Add to recent check ins
+            if (recentCheckInsQueue.size() == 10) recentCheckInsQueue.poll();
+            recentCheckInsQueue.add(new Book(
+                    selectedBook.getTitle(),
+                    selectedBook.getAuthor(),
+                    selectedBook.getIsbn(),
+                    false,
+                    (lastBorrowedBy != null) ? lastBorrowedBy : "N/A", // If null, display "N/A"
+                    (lastDueDate != null) ? lastDueDate : null // Keep null for proper formatting
+            ));
+
+            // Update the check-in table
             recentCheckInsTable.setItems(FXCollections.observableArrayList(recentCheckInsQueue));
 
-
-
+            // Save the changes
             saveBooks(bookList);
-            updateUserBooksTable();  //Makes sure the checkout tab displays proper information
+            updateUserBooksTable(); // Update the checkout tab
+
             showAlert(Alert.AlertType.INFORMATION, "Success", "Book checked in successfully.");
         } else {
-            showAlert(Alert.AlertType.ERROR, "Check-In Error", "No checked-out book found with that ISBN or Title.");
+            showAlert(Alert.AlertType.ERROR, "Check-In Error", "No book found with that ID or Title.");
         }
     }
+
 
     private String getUserNameById(String userId) {
         return userList.stream()
                 .filter(user -> user.getUserId().equals(userId))
                 .map(User::getName)
                 .findFirst()
-                .orElse("Unknown");
+                .orElse("N/A");
     }
 
 

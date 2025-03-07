@@ -1,11 +1,11 @@
 [ {
   "userId" : "U7544",
   "name" : "Mr. Man",
-  "checkedOutBooks" : [ "978-1524631654" ]
+  "checkedOutBooks" : [ "978-1524631654", "978-456132412", "978-1250868312", "201", "202", "203", "204", "205" ]
 }, {
   "userId" : "U435",
   "name" : "Mr. Bill",
-  "checkedOutBooks" : [ ]
+  "checkedOutBooks" : [ "210" ]
 }, {
   "userId" : "U76554",
   "name" : "Joan Collins",
