@@ -27,8 +27,10 @@ public class UserRegistrationApp extends Application {
         userList = FXCollections.observableArrayList(loadUsers()); // Ensure ObservableList is updated
         tableView = new TableView<>();
 
+        /*
         // DEBUG: Print loaded users
         System.out.println("Loaded users: " + userList);
+        */
 
         // Table Columns
         TableColumn<User, String> idCol = new TableColumn<>("User ID");

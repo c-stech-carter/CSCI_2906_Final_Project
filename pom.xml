@@ -74,7 +74,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>carter.stech.librarysystemv2/carter.stech.librarysystemv2.CatalogingApp
+                            <mainClass>carter.stech.librarysystemv2/carter.stech.librarysystemv2.MasterApp
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
