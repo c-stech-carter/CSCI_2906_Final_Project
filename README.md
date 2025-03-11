@@ -37,6 +37,9 @@ Ensure you have the following installed:
    java --module-path /path/to/javafx/lib --add-modules javafx.controls,javafx.fxml -cp out carter.stech.librarysystemv2.MasterApp
    ```
 
+#### Download the .JAR and run it.
+The file is called LibrarySystemV2-1.0-SNAPSHOT.jar, you can see it in the base repository folder.   You should also download books.json and users.json if you want to use example databases.  You'll also need to have Java installed on your device.   You can simply double click on the .JAR and the program should run.
+
 ## Modules Description
 ### 1. **MasterApp.java**
 This is the main entry point that allows navigation between different modules.
