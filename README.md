@@ -79,3 +79,21 @@ The application stores book and user information in JSON format:
 **Charles Carter
 
 ---
+
+
+## Screenshots
+
+### Master App
+![Master App](https://github.com/c-stech-carter/CSCI_2906_Final_Project/blob/main/screenshots/MasterApp.png)
+
+### Circulation App
+![Circulation App](https://github.com/c-stech-carter/CSCI_2906_Final_Project/blob/main/screenshots/CirculationApp.png)
+
+### Book Browsing App
+![Circulation App](https://github.com/c-stech-carter/CSCI_2906_Final_Project/blob/main/screenshots/BrowserApp.png)
+
+### User Registration App
+![Circulation App](https://github.com/c-stech-carter/CSCI_2906_Final_Project/blob/main/screenshots/UserRegistrationApp.png)
+
+### Cataloging App
+![Circulation App](https://github.com/c-stech-carter/CSCI_2906_Final_Project/blob/main/screenshots/CatalogingApp.png)
