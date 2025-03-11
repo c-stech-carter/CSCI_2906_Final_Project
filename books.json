@@ -1,0 +1,148 @@
+[ {
+  "title" : "The Cheese Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "978-1524631654",
+  "available" : false,
+  "borrowedBy" : "U7544",
+  "dueDate" : [ 2025, 3, 19 ]
+}, {
+  "title" : "The Corn Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "978-456132412",
+  "available" : false,
+  "borrowedBy" : "U7544",
+  "dueDate" : [ 2025, 3, 20 ]
+}, {
+  "title" : "Mistborn: The Final Empire",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-1250868282",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Well of Ascension",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-1250868299",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Hero of Ages",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-1250868312",
+  "available" : false,
+  "borrowedBy" : "U7544",
+  "dueDate" : [ 2025, 3, 20 ]
+}, {
+  "title" : "The Alloy of Law",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765330420",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "Shadows of Self",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765378552",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Bands of Mourning",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765378576",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Lost Metal",
+  "author" : "Brandon Sanderson",
+  "isbn" : "978-0765391193",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The First Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "201",
+  "available" : false,
+  "borrowedBy" : "U7544",
+  "dueDate" : [ 2025, 3, 20 ]
+}, {
+  "title" : "The Second Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "202",
+  "available" : false,
+  "borrowedBy" : "U7544",
+  "dueDate" : [ 2025, 3, 20 ]
+}, {
+  "title" : "The Third Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "203",
+  "available" : false,
+  "borrowedBy" : "U7544",
+  "dueDate" : [ 2025, 3, 20 ]
+}, {
+  "title" : "The Fourth Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "204",
+  "available" : false,
+  "borrowedBy" : "U7544",
+  "dueDate" : [ 2025, 3, 20 ]
+}, {
+  "title" : "The Fifth Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "205",
+  "available" : false,
+  "borrowedBy" : "U7544",
+  "dueDate" : [ 2025, 3, 20 ]
+}, {
+  "title" : "The Sixth Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "206",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Seventh Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "207",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Eighth Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "208",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Ninth Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "209",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "The Tenth Book",
+  "author" : "Jorn Shorn",
+  "isbn" : "210",
+  "available" : false,
+  "borrowedBy" : "U435",
+  "dueDate" : [ 2025, 3, 20 ]
+}, {
+  "title" : "Dune, but Nonfiction",
+  "author" : "Frank Herbert",
+  "isbn" : "445511",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+}, {
+  "title" : "Gandalf, The Autobiography",
+  "author" : "Gandalf The Grey",
+  "isbn" : "T0112",
+  "available" : true,
+  "borrowedBy" : null,
+  "dueDate" : null
+} ]

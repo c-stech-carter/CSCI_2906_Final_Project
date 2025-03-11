@@ -1,0 +1,92 @@
+/* Set background color of the entire window */
+.root {
+    -fx-background-color: #f4f4f4;
+}
+
+/* Style the TableView */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 2, 2);
+}
+
+/* Style table headers */
+.table-view .column-header {
+    -fx-background-color: #dddddd;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-border-color: #555555; /* Dark gray border */
+    -fx-border-width: 0 0 1px 0; /* Bottom border only */
+}
+
+/* Adjust table column styling */
+.table-column {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: #ddd;
+}
+
+/* Light gray background for even rows */
+.table-row-cell:even {
+    -fx-background-color: #f0f0f0 !important; /* Slightly darker for contrast */
+}
+
+/* White background for odd rows */
+.table-row-cell:odd {
+    -fx-background-color: #ffffff !important;
+}
+
+/* Ensure the base row style does not interfere */
+.table-row-cell {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-background-color: transparent; /* Prevent overriding row colors */
+}
+
+/* Ensure table cell text remains visible */
+.table-row-cell .text {
+    -fx-fill: black !important;
+}
+
+/* Ensure text remains readable in selected rows */
+.table-row-cell:selected {
+    -fx-background-color: #2196F3 !important; /* Keep blue background */
+    -fx-text-fill: black !important;
+}
+
+/* Ensure text inside cells stays black when selected */
+.table-row-cell:selected .text {
+    -fx-fill: black !important;
+}
+
+/* Style each table cell */
+.table-cell {
+    -fx-border-color: #555555; /* Dark gray border */
+    -fx-border-width: 0 1px 1px 0; /* Only right and bottom borders */
+    -fx-border-style: solid;
+    -fx-padding: 5px;
+    -fx-background-color: transparent; /* Ensure row colors show through */
+}
+
+/* Style buttons */
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 5px;
+}
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Style text fields */
+.text-field {
+    -fx-border-color: #aaa;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
